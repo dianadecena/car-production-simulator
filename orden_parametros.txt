@@ -1,0 +1,13 @@
+1. Tiempo en segundos que dura un día.
+2. Cantidad de días entre despachos.
+3. Capacidad máxima de almacén de ruedas.
+4. Capacidad máxima de almacén de parabrisas.
+5. Capacidad máxima de almacén de motores.
+6. Cantidad inicial de productores de ruedas.
+7. Cantidad inicial de productores parabrisas.
+8. Cantidad inicial de productores motores.
+9. Cantidad máxima de productores de ruedas.
+10. Cantidad máxima de productores de parabrisas.
+11. Cantidad máxima de productores de motores.
+12. Cantidad inicial de ensambladores.
+13. Cantidad máxima de ensambladores.
