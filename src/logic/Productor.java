@@ -11,8 +11,6 @@ public class Productor extends Thread {
     public int cantMax;
     public boolean contratado;
     public static int ContPR = 0, ContPM = 0, ContPP = 0;
-    public Archivo parametros;
-    
     
     public Productor(int dia, String tipoProductor, Almacen almacen, Semaphore sVacio, Semaphore sHayPieza, Semaphore mutexAlmacen,
     int cantMax){
@@ -23,7 +21,6 @@ public class Productor extends Thread {
         this.mutexAlmacen = mutexAlmacen;
         this.contratado = true;
         this.cantMax = cantMax;
-    
     }
     
     @Override
@@ -50,7 +47,7 @@ public class Productor extends Thread {
                 
                if(ContPR < cantMax && Fabrica.cantRuedas < cantMax){
                     Almacen.setAlmacenRuedas(ContPR, true, 0);
-                    Fabrica.cantRuedas++;
+                    Fabrica.setCantRuedas(Fabrica.getCantRuedas()+1);
                     ContPR++;
                     if(ContPR == cantMax)
                         ContPR = 0;
@@ -82,7 +79,7 @@ public class Productor extends Thread {
                 //Sección crítica 
                 if(ContPP < cantMax && Fabrica.cantParabrisas < cantMax){
                     Almacen.setAlmacenParabrisas(ContPP, true);
-                    Fabrica.cantParabrisas++;
+                     Fabrica.setCantParabrisas(Fabrica.getCantParabrisas()+1);
                     ContPP++;
                     if(ContPP == cantMax)
                         ContPP = 0;
@@ -113,7 +110,7 @@ public class Productor extends Thread {
                 if(ContPM < cantMax && Fabrica.cantMotores < cantMax){
                     Almacen.setAlmacenMotores(ContPM, true);
                     ContPM++;
-                    Fabrica.cantMotores++;
+                     Fabrica.setCantMotores(Fabrica.getCantMotores()+1);
                     if(ContPM == cantMax)
                         ContPM = 0;
                 } 

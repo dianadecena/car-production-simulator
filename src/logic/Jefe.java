@@ -18,18 +18,19 @@ public class Jefe extends Thread {
        Jefe.estado = "durmiendo";
     }
     
-     
     @Override
     public void run() {
         
         while(true){
+            
+            //Calculos para ver cuánto vale 1 hora en segundos
+            //si 24 horas (numero2) son un día y un día (numero1) segundos, entonces (resultado) serán lo que vale una hora en segundos
             float numero1 = this.dia;          
             float numero2 = 24;      
             float resultado;
             resultado = numero1/numero2;
 
             try {                  
-                //System.out.println((int)((this.dia*1000)-(resultado*1.5*1000)));
                 Thread.sleep((int)((this.dia*1000)-(resultado*1.5*1000)));
                 System.out.println("El jefe está dormido");
                 mutexModifDias.acquire();
@@ -37,7 +38,7 @@ public class Jefe extends Thread {
                 //Si el gerente no está modificando el contador, entonces el jefe lo puede modificar
                 estado = "modif. contador";
                 System.out.println("El jefe está modificando el contador");
-                //System.out.println((int)(resultado*1.5*1000));
+                //Tarda un tiempo modificando el contador
                 Thread.sleep((int)(resultado*1.5*1000));
 
                 if(Jefe.diasDespacho < 0){

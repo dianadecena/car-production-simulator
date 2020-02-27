@@ -45,9 +45,9 @@ public class UI extends javax.swing.JFrame {
             cantPParabrisas.setText(Integer.toString(fabrica.getCantProductoresP()));
             cantPMotores.setText(Integer.toString(fabrica.getCantProductoresM()));
             cantEnsambladores.setText(Integer.toString(fabrica.getCantEnsambladores()));
-            cantParabrisas.setText(Integer.toString(Fabrica.cantParabrisas));
-            cantRuedas.setText(Integer.toString(Fabrica.cantRuedas));
-            cantMotores.setText(Integer.toString(Fabrica.cantMotores));
+            cantParabrisas.setText(Integer.toString(Fabrica.getCantParabrisas()));
+            cantRuedas.setText(Integer.toString(Fabrica.getCantRuedas()));
+            cantMotores.setText(Integer.toString(Fabrica.getCantMotores()));
             cantCarros.setText(Integer.toString(Fabrica.getCarrosTerminados()));
             cantDias.setText(Integer.toString(Jefe.getDiasDespacho()));
             estadoJefe.setText(Jefe.estado);

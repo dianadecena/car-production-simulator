@@ -176,11 +176,15 @@ public class Fabrica {
     }
     
     public void comenzarJefe(){
+        
+        //Comenzar hilo del jefe 
         jefe.start();
         System.out.println("Hilo del jefe iniciado");
     }
     
     public void comenzarGerente(){
+        
+        //Comenzar hilo del gerente 
         gerente.start();
         System.out.println("Hilo del gerente iniciado");
     }
@@ -280,6 +284,30 @@ public class Fabrica {
         Fabrica.carrosTerminados = carrosTerminados;
     }
 
+    public static int getCantRuedas() {
+        return cantRuedas;
+    }
+
+    public static void setCantRuedas(int cantRuedas) {
+        Fabrica.cantRuedas = cantRuedas;
+    }
+
+    public static int getCantParabrisas() {
+        return cantParabrisas;
+    }
+
+    public static void setCantParabrisas(int cantParabrisas) {
+        Fabrica.cantParabrisas = cantParabrisas;
+    }
+
+    public static int getCantMotores() {
+        return cantMotores;
+    }
+
+    public static void setCantMotores(int cantMotores) {
+        Fabrica.cantMotores = cantMotores;
+    }
+
     public int getCantProductoresR() {
         return cantProductoresR;
     }
@@ -315,7 +343,5 @@ public class Fabrica {
     public int getMaxEnsambladores() {
         return maxEnsambladores;
     }
-    
-    
        
 }

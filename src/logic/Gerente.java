@@ -23,8 +23,11 @@ public class Gerente extends Thread {
         
         while(true){
 
+            //Gererar número random entre 6 y 18
             int random = (int)(Math.random()*(18-6+1)+6);
             
+            //Calculos para ver cuánto vale 1 hora en segundos
+            //si 24 horas (numero2) son un día y un día (numero1) segundos, entonces (resultado) serán lo que vale una hora en segundos
             float numero1 = this.dia;          
             float numero2 = 24;      
             float resultado;
@@ -35,23 +38,27 @@ public class Gerente extends Thread {
                 System.out.println("El gerente está durmiendo");
                 Thread.sleep((int)(resultado*random*1000));
                 
+                //Verificar si el jefe no está modificando el contador 
                 mutexModifDias.acquire();
                 
                 estado = "verif. contador";
                 System.out.println("El gerente está verificando el contador");
+                //Tarda un tiempo verificando el contador 
                 Thread.sleep((int)(resultado*0.5*1000));
                 
+                //Si la cantidad de días es igual a 0 debe despachar los carros 
                 if(Jefe.getDiasDespacho() == 0){
                     estado = "despachando";  
+                    //Verifica si el ensamblador no está modificando la variable 
                     mutexCarrosTerminados.acquire();
-                    //System.out.println("El gerente está despachando los carros");
                     Thread.sleep((int)(resultado*0.5*1000));
                     Fabrica.setCarrosTerminados(0);
                     Jefe.setDiasDespacho(this.diasDespacho);
+                    //El gerente ya ha cumplido su trabajo y le da acceso al ensamblador
                     mutexCarrosTerminados.release();
                 } 
-                
-                //estado = "DESPACHANDO LOS CARROS";
+
+                //El gerente ya ha cumplido su trabajo y le da acceso al jefe
                 mutexModifDias.release();
                     
             } catch (InterruptedException ex) {

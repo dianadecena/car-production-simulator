@@ -1,6 +1,5 @@
 
 package logic;
-//holaaaaaa
 
 public class Almacen {
     
@@ -82,11 +81,7 @@ public class Almacen {
                     Almacen.AlmacenRuedas[2] =  valor;
                     Almacen.AlmacenRuedas[3] =  valor;
                     break;
-                    
-            }
-                
-            
+            }    
         }
     }
-    
 }
