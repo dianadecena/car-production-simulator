@@ -59,6 +59,7 @@ public class Ensamblador extends Thread {
                 }
                 else {
                     Almacen.setAlmacenRuedas(ContR, false, 0);
+                    Fabrica.cantRuedas = Fabrica.cantRuedas - 4;
                     ContR = ContR+4;}
                 mutexAlmacenR.release();
                 
