@@ -45,7 +45,7 @@ public class Productor extends Thread {
             
                 //Sección crítica 
                 
-               if(ContPR < cantMax && Fabrica.cantRuedas < cantMax){
+               if(ContPR < cantMax && Fabrica.getCantRuedas() < cantMax){
                     Almacen.setAlmacenRuedas(ContPR, true, 0);
                     Fabrica.setCantRuedas(Fabrica.getCantRuedas()+1);
                     ContPR++;
@@ -77,9 +77,9 @@ public class Productor extends Thread {
                 mutexAlmacen.acquire();
             
                 //Sección crítica 
-                if(ContPP < cantMax && Fabrica.cantParabrisas < cantMax){
+                if(ContPP < cantMax && Fabrica.getCantParabrisas() < cantMax){
                     Almacen.setAlmacenParabrisas(ContPP, true);
-                     Fabrica.setCantParabrisas(Fabrica.getCantParabrisas()+1);
+                    Fabrica.setCantParabrisas(Fabrica.getCantParabrisas()+1);
                     ContPP++;
                     if(ContPP == cantMax)
                         ContPP = 0;
@@ -107,10 +107,10 @@ public class Productor extends Thread {
                 mutexAlmacen.acquire();
             
                 //Sección crítica 
-                if(ContPM < cantMax && Fabrica.cantMotores < cantMax){
+                if(ContPM < cantMax && Fabrica.getCantMotores() < cantMax){
                     Almacen.setAlmacenMotores(ContPM, true);
                     ContPM++;
-                     Fabrica.setCantMotores(Fabrica.getCantMotores()+1);
+                    Fabrica.setCantMotores(Fabrica.getCantMotores()+1);
                     if(ContPM == cantMax)
                         ContPM = 0;
                 } 

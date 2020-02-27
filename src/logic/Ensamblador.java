@@ -54,7 +54,7 @@ public class Ensamblador extends Thread {
                 //ContPR min puede ser 31 31-30=1
                 
                 //Sección crítica
-                if(ContR+4 > cantRuedas){
+                    if(ContR+4 > cantRuedas){
                     int aux= ContR+4-cantRuedas;
                     Almacen.setAlmacenRuedas(ContR, false, aux);
                     Fabrica.setCantRuedas(Fabrica.getCantRuedas()-4);
@@ -63,7 +63,7 @@ public class Ensamblador extends Thread {
                 }
                 else {
                     Almacen.setAlmacenRuedas(ContR, false, 0);
-                    Fabrica.cantRuedas = Fabrica.cantRuedas - 4;
+                    Fabrica.setCantRuedas(Fabrica.getCantRuedas()-4);
                     ContR = ContR+4;
                 }
                 //El ensamblador ya ha cumplido su trabajo y le da acceso al productor
@@ -75,19 +75,19 @@ public class Ensamblador extends Thread {
                 //Sección crítica
                 Almacen.setAlmacenParabrisas(ContP, false);
                 ContP++;
-                Fabrica.setCantRuedas(Fabrica.getCantRuedas()-1);
+                Fabrica.setCantParabrisas(Fabrica.getCantParabrisas()-1);
                 if(ContP == cantParabrisas)
                     ContP=0;
                 //El ensamblador ya ha cumplido su trabajo y le da acceso al productor
                 mutexAlmacenP.release();
                 
                 //Verificar si el productor no está en el almacén para poder acceder
+                mutexAlmacenM.acquire();
                 
                 //Sección crítica
-                mutexAlmacenM.acquire();
                 Almacen.setAlmacenMotores(ContM, false);
                 ContM++;
-                Fabrica.setCantRuedas(Fabrica.getCantRuedas()-1);
+                Fabrica.setCantMotores(Fabrica.getCantMotores()-1);
                 if(ContM == cantMotores)
                     ContM=0;
                 //El ensamblador ya ha cumplido su trabajo y le da acceso al productor
