@@ -6,11 +6,7 @@ public class Almacen {
     
     //Variable para guardar la capacidad 
     private int capacidad;
-    //Array para guardar 0 y 1 dependiendo si hay o no pizas en el almacén
-    private int[] almacen;
-    //Variable para guardar la cantidad de piezas en el almacén 
-    private int cantPiezas;
-    
+    //Array para guardar 0 y 1 dependiendo si hay o no pizas en los almacenes  
     private static boolean[] AlmacenRuedas;
     private static boolean[] AlmacenParabrisas;
     private static boolean[] AlmacenMotores;
@@ -18,8 +14,6 @@ public class Almacen {
     
     public Almacen(int maxPiezas, char tipo){
         //Crear array para guardar las piezas (motores, parabrisas o ruedas)
-        //this.almacen = new int[this.capacidad];
-        //this.cantPiezas = 0; 
         if (tipo == 'P'){
             this.capacidad = maxPiezas;
             this.AlmacenParabrisas = new boolean[this.capacidad];
@@ -34,8 +28,6 @@ public class Almacen {
         }
     }
 
-   
-    
     public int getCapacidad() {
         return capacidad;
     }
@@ -43,40 +35,6 @@ public class Almacen {
     public void setCapacidad(int capacidad) {
         this.capacidad = capacidad;
     }
-
-    public int[] getAlmacen() {
-        return almacen;
-    }
-
-    public void setAlmacen(int i, int valor) {
-        this.almacen[i] = valor;
-    }
-
-    public int getCantPiezas() {
-        return cantPiezas;
-    }
-
-    public void setCantPiezas(int cantPiezas) {
-        this.cantPiezas = cantPiezas;
-    }
-
-
-    public boolean[] getAlmacenRuedas() {
-        return AlmacenRuedas;
-    }
-
-    public boolean[] getAlmacenParabrisas() {
-        return AlmacenParabrisas;
-    }
-
-    public boolean[] getAlmacenMotores() {
-        return AlmacenMotores;
-    }
-
-    public void setAlmacen(int[] almacen) {
-        this.almacen = almacen;
-    }
-
 
     public static void setAlmacenParabrisas(int pos, boolean valor) {
          Almacen.AlmacenParabrisas[pos] =  valor;
@@ -130,10 +88,5 @@ public class Almacen {
             
         }
     }
-    
-    /*public static void setAlmacenRuedas(int pos, boolean valor) {   
-        Almacen.AlmacenRuedas[pos] =  valor;
-    }*/
-    
     
 }

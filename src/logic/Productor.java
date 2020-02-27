@@ -48,23 +48,14 @@ public class Productor extends Thread {
             
                 //Sección crítica 
                 
-               if(ContPR < cantMax && Fabrica.cantRuedas<cantMax){
+               if(ContPR < cantMax && Fabrica.cantRuedas < cantMax){
                     Almacen.setAlmacenRuedas(ContPR, true, 0);
                     Fabrica.cantRuedas++;
                     ContPR++;
                     if(ContPR == cantMax)
                         ContPR = 0;
                 }
-                
-                /*for(int i=0; i<4; i++){
-                    Almacen.setAlmacenRuedas(ContPR, false);
-                    Fabrica.cantRuedas++;
-                    ContPR++;
-                    if(ContPR == cantMax){
-                        ContPR = 0;
-                    }
-                }*/
-                
+               
                 System.out.println("Se hizo una rueda");
                 System.out.println(Fabrica.cantRuedas);
                 
@@ -89,7 +80,7 @@ public class Productor extends Thread {
                 mutexAlmacen.acquire();
             
                 //Sección crítica 
-                if(ContPP < cantMax && Fabrica.cantParabrisas<cantMax){
+                if(ContPP < cantMax && Fabrica.cantParabrisas < cantMax){
                     Almacen.setAlmacenParabrisas(ContPP, true);
                     Fabrica.cantParabrisas++;
                     ContPP++;
@@ -119,7 +110,7 @@ public class Productor extends Thread {
                 mutexAlmacen.acquire();
             
                 //Sección crítica 
-                if(ContPM < cantMax && Fabrica.cantMotores<cantMax){
+                if(ContPM < cantMax && Fabrica.cantMotores < cantMax){
                     Almacen.setAlmacenMotores(ContPM, true);
                     ContPM++;
                     Fabrica.cantMotores++;
@@ -143,13 +134,8 @@ public class Productor extends Thread {
         }
     }
 
-
     public void setContratado(boolean contratado) {
         this.contratado = contratado;
-    }
-    
-    public void almacenarPieza(){
-        
     }
      
 }

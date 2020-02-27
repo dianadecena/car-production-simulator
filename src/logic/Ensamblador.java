@@ -50,7 +50,7 @@ public class Ensamblador extends Thread {
                 mutexAlmacenR.acquire();
                 //si contPR es 28 entra ya que 28+4=32 entonces.....
                 //ContPR min puede ser 31 31-30=1
-               if(ContR+4 >cantRuedas){
+               if(ContR+4 > cantRuedas){
                     int aux= ContR+4-cantRuedas;
                     Almacen.setAlmacenRuedas(ContR, false, aux);
                     Fabrica.cantRuedas = Fabrica.cantRuedas - 4;
@@ -60,15 +60,6 @@ public class Ensamblador extends Thread {
                 else {
                     Almacen.setAlmacenRuedas(ContR, false, 0);
                     ContR = ContR+4;}
-                 /*for(int i=0; i<4; i++){
-                    Almacen.setAlmacenRuedas(ContR, false);
-                    Productor.ContPR -= 4;
-                    ContR++;
-                    if(ContR == capacidadAlmacenR){
-                        ContR = 0;
-                    }
-                }*/
-                
                 mutexAlmacenR.release();
                 
                 
@@ -104,30 +95,6 @@ public class Ensamblador extends Thread {
 
     public void setContratado(boolean contratado) {
         this.contratado = contratado;
-    }
-    
-    public void tomarRuedas(){
-        
-    }
-    
-    public void tomarMotor(){
-        
-    }
-    
-    public void tomarParabrisas(){
-        
-    }
-
-    public void setCantRuedas(int cantRuedas) {
-        this.cantRuedas = cantRuedas;
-    }
-
-    public void setCantParabrisas(int cantParabrisas) {
-        this.cantParabrisas = cantParabrisas;
-    }
-
-    public void setCantMotores(int cantMotores) {
-        this.cantMotores = cantMotores;
     }
     
 }

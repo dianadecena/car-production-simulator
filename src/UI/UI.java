@@ -2,7 +2,6 @@
 package UI;
 
 import java.awt.event.ActionEvent;
-import java.time.LocalTime;
 import javax.swing.ImageIcon;
 import javax.swing.Timer;
 import logic.*;
@@ -16,9 +15,7 @@ import logic.*;
 public class UI extends javax.swing.JFrame {
 
     private Fabrica fabrica;
-    private int cont=0;
-    private int systime, timetosec;
-    private int aux = 0, aux1;
+    private int cont = 0;
     
     public UI() {
         initComponents();
@@ -43,15 +40,11 @@ public class UI extends javax.swing.JFrame {
 
         //Actualizar interfaz gráfica 
         Timer timer = new Timer(1, (ActionEvent ae) -> {  
+            //set cantidades iniciales
             cantPRuedas.setText(Integer.toString(fabrica.getCantProductoresR()));
             cantPParabrisas.setText(Integer.toString(fabrica.getCantProductoresP()));
             cantPMotores.setText(Integer.toString(fabrica.getCantProductoresM()));
             cantEnsambladores.setText(Integer.toString(fabrica.getCantEnsambladores()));
-            if(Fabrica.carrosTerminados == 0){
-                carros.setIcon(new ImageIcon(getClass().getResource("carros-off.png")));
-            } else {
-                carros.setIcon(new ImageIcon(getClass().getResource("carros-on.png")));
-            }
             cantParabrisas.setText(Integer.toString(Fabrica.cantParabrisas));
             cantRuedas.setText(Integer.toString(Fabrica.cantRuedas));
             cantMotores.setText(Integer.toString(Fabrica.cantMotores));
@@ -59,6 +52,12 @@ public class UI extends javax.swing.JFrame {
             cantDias.setText(Integer.toString(Jefe.getDiasDespacho()));
             estadoJefe.setText(Jefe.estado);
             gerenteEstado.setText(Gerente.estado);
+            
+            if(Fabrica.carrosTerminados == 0){
+                carros.setIcon(new ImageIcon(getClass().getResource("carros-off.png")));
+            } else {
+                carros.setIcon(new ImageIcon(getClass().getResource("carros-on.png")));
+            }
             
             if(Jefe.getEstado() == "durmiendo"){
                 etiqueta1.setIcon(new ImageIcon(getClass().getResource("no-jefe-gerente.png")));
@@ -78,17 +77,12 @@ public class UI extends javax.swing.JFrame {
                 cantDias.setLocation(930, 380);
             }
             
-            /*//hacerlo en metodo
-            LocalTime systime = LocalTime.now();
-            timetosec = systime.getSecond();
-            if(aux == 0){
-            aux1= timetosec;
-            aux=1;
+            if(Fabrica.carrosTerminados  > 9){
+                cantCarros.setLocation(920, 240);
+            } else {
+                cantCarros.setLocation(930, 240);
             }
-            if (timetosec == aux1+10){
-            System.out.println(timetosec);
-            aux1=timetosec;
-            }*/
+            
         });
         timer.start();
     }
@@ -174,7 +168,7 @@ public class UI extends javax.swing.JFrame {
         cantCarros.setFont(new java.awt.Font("Segoe UI", 1, 40)); // NOI18N
         cantCarros.setForeground(new java.awt.Color(255, 255, 255));
         cantCarros.setText("10");
-        dashboard.add(cantCarros, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 240, 50, -1));
+        dashboard.add(cantCarros, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 240, 60, -1));
 
         carros.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/carros-off.png"))); // NOI18N
         dashboard.add(carros, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 50, -1, -1));
