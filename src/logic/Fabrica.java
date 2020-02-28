@@ -53,8 +53,8 @@ public class Fabrica {
 
         //Creación de almacenes para cada tipo de pieza 
         this.almacenR = new Almacen(this.parametros.getMaxAlmacenR(), 'R');
-        this.almacenP = new Almacen(this.parametros.getMaxProductoresP(), 'P');
-        this.almacenM = new Almacen(this.parametros.getMaxProductoresM(), 'M');
+        this.almacenP = new Almacen(this.parametros.getMaxAlmacenP(), 'P');
+        this.almacenM = new Almacen(this.parametros.getMaxAlmacenM(), 'M');
         
         
         //Creación de productores para cada tipo de pieza
@@ -119,14 +119,14 @@ public class Fabrica {
         //Creación de productores de parabrisas iniciales
         for(int i=0; i<this.parametros.getInitProductoresP(); i++){
             productoresP[i] = new Productor(this.parametros.getDia(), "parabrisas", this.almacenP, this.sVacioAlmacenP, 
-            this.sHayParabrisas, this.mutexAlmacenP, this.parametros.getMaxProductoresP());
+            this.sHayParabrisas, this.mutexAlmacenP, this.parametros.getMaxAlmacenP());
         }
         System.out.println("Productores de parabrisas creados");
         
         //Creación de productores de motores iniciales
         for(int i=0; i<this.parametros.getInitProductoresM(); i++){
             productoresM[i] = new Productor(this.parametros.getDia(), "motores", this.almacenM, this.sVacioAlmacenM, 
-            this.sHayMotores, this.mutexAlmacenM, this.parametros.getMaxProductoresP());
+            this.sHayMotores, this.mutexAlmacenM, this.parametros.getMaxAlmacenM());
         }
         System.out.println("Productores de motores creados");
     }
@@ -138,8 +138,8 @@ public class Fabrica {
             ensambladores[i] = new Ensamblador(this.parametros.getDia(), this.sVacioAlmacenR, 
             this.sHayRuedas, this.mutexAlmacenR, this.sVacioAlmacenP, 
             this.sHayParabrisas, this.mutexAlmacenP, this.sVacioAlmacenM, 
-            this.sHayMotores, this.mutexAlmacenM, this.mutexCarrosTerminados, this.parametros.getMaxProductoresR(),
-            this.parametros.getMaxProductoresP(), this.parametros.getMaxProductoresM());
+            this.sHayMotores, this.mutexAlmacenM, this.mutexCarrosTerminados, this.parametros.getMaxAlmacenR(),
+            this.parametros.getMaxAlmacenP(), this.parametros.getMaxAlmacenM());
         }
         System.out.println("Ensambladores creados");
         
@@ -202,7 +202,7 @@ public class Fabrica {
     public void contratarProductorP(){
         if(cantProductoresP < this.parametros.getMaxProductoresP()){
             productoresP[cantProductoresP] = new Productor(this.parametros.getDia(), "parabrisas", this.almacenP, this.sVacioAlmacenP, 
-            this.sHayParabrisas, this.mutexAlmacenP, this.parametros.getMaxProductoresP());
+            this.sHayParabrisas, this.mutexAlmacenP, this.parametros.getMaxAlmacenP());
             productoresP[cantProductoresP].start();
             cantProductoresP++;
             System.out.println("Contratado productor de parabrisas");
@@ -212,7 +212,7 @@ public class Fabrica {
     public void contratarProductorM(){
         if(cantProductoresM < this.parametros.getMaxProductoresM()){
             productoresM[cantProductoresM] = new Productor(this.parametros.getDia(), "motores", this.almacenM, this.sVacioAlmacenM, 
-            this.sHayMotores, this.mutexAlmacenM, this.parametros.getMaxProductoresM());
+            this.sHayMotores, this.mutexAlmacenM, this.parametros.getMaxAlmacenM());
             productoresM[cantProductoresM].start();
             cantProductoresM++;
             System.out.println("Contratado productor de motores");
@@ -224,8 +224,8 @@ public class Fabrica {
             ensambladores[cantEnsambladores] = new Ensamblador(this.parametros.getDia(), this.sVacioAlmacenR, 
             this.sHayRuedas, this.mutexAlmacenR, this.sVacioAlmacenP, 
             this.sHayParabrisas, this.mutexAlmacenP, this.sVacioAlmacenM, 
-            this.sHayMotores, this.mutexAlmacenM, this.mutexCarrosTerminados, this.parametros.getMaxProductoresR(),
-            this.parametros.getMaxProductoresP(), this.parametros.getMaxProductoresM());
+            this.sHayMotores, this.mutexAlmacenM, this.mutexCarrosTerminados, this.parametros.getMaxAlmacenR(),
+            this.parametros.getMaxAlmacenP(), this.parametros.getMaxAlmacenM());
             ensambladores[cantEnsambladores].start();
             cantEnsambladores++;
             System.out.println("Contratado ensamblador");
